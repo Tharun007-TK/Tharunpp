@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "Tharunpp"
+version = "0.3.1"
+description = "Tharun++(Tharunpp) is a programming language based on the famous comedy dialogues of Tamil cinema industry."
+authors = ["Tharun Kumar <tharunkumarvmt@gmail.com>"]
+license = "MIT License"
+readme = "README.md"
+
+homepage = "https://github.com/Tharun007-webdesigner/Tharunpp/tree/main"
+repository = "https://github.com/Tharun007-webdesigner/Tharunpp/tree/main/Tharunpp"
+documentation = "https://github.com/aadhithya/rajiniPP/wiki"
+
+keywords = ["esolang", "interpreter", "rply", "Tharunpp", "thala"]
+
+classifiers = [
+    "Topic :: Software Development :: Interpreters",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8, <3.11"
+rply = "^0.7.8"
+munch = "^2.5.0"
+loguru = "^0.6.0"
+typer = "^0.4.1"
+
+
+[tool.poetry.dev-dependencies]
+poetry = "^1.1.13"
+commitizen = "^2.24.0"
+pre-commit = "^2.19.0"
+pytest = "^7.1.2"
+pytest-cov = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+Tharunpp = "Tharunpp.__main__:app"
+
+[tool.semantic_release]
+version_variable = [
+    "pyproject.toml:version",
+    "Tharunpp/__init__.py:__version__"
+]
+branch = "master"
+upload_to_pypi = true
+upload_to_release = true
+build_command = "pip install poetry && poetry build"
+commit_subject = "Bump to {version}"
+commit_message = "Bump to {version}"
