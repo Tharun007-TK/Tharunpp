@@ -1,5 +1,80 @@
 # Changelog
 
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2026-03-28
+
+### Added
+- **Complete rewrite using Lark parser** - Replaced rply-based parser with Lark for better maintainability
+- **UPPERCASE keyword syntax** - All keywords now use UPPERCASE (e.g., `VAA`, `SOLLU`, `SARI`)
+- **List support** - Full array/list operations:
+  - `PATTI POTTU [items]` - Create list
+  - `ULLAYE POD list value` - Append to list
+  - `EDUTHU KO list [index]` - Get from list
+  - `YEVLO IRUKU list` - Get list length
+- **String concatenation** - Type coercion for string concatenation (e.g., `"Hello" + " World"`)
+- **Type-safe division** - Returns int when result is whole number (e.g., `10 / 2` returns `5`)
+- **Improved error handling** - Specific exceptions that don't swallow runtime errors:
+  - `TharunppSyntaxError` - Parse errors
+  - `TharunppNameError` - Undefined variables
+  - `TharunppTypeError` - Type mismatches
+  - `TharunppZeroDivisionError` - Division by zero
+- **Modern CLI with Typer**:
+  - `tharunpp run-file` - Run programs
+  - `tharunpp shell` - Interactive REPL
+  - `tharunpp tokenize` - Show parse tree
+  - `tharunpp version` - Show version
+- **Comprehensive test suite** - 26 tests covering all language features
+- **Complete documentation**:
+  - Full keyword reference table
+  - 5 working code examples
+  - Quick start guide
+  - Deployment guide
+
+### Changed
+- **Python version support** - Now supports Python 3.8 through 3.13 (removed <3.11 cap)
+- **Package structure** - New modular structure with `core` and `cli` modules
+- **Dependencies** - Switched from rply/munch to lark/typer
+- **Grammar** - Complete rewrite with clearer syntax rules
+- **Package name** - Published as `tharunpp` on PyPI
+
+### Removed
+- Old rply-based lexer and parser
+- Old rajini++ references
+- Python <3.8 support
+- rply and munch dependencies
+
+### Fixed
+- Error handling that swallowed runtime exceptions
+- Variable assignment indexing issues
+- Function definition and return value handling
+- Control flow (if/while/for) statement execution
+- Print statement handling for multiple arguments
+- Assert and throw statement evaluation
+
+### Technical Details
+- Migrated from rply (LR parser) to Lark (Earley parser)
+- Proper token-based tree traversal
+- Environment-based variable scoping
+- Function closure support
+- Exception-based return value handling
+
+## [0.3.1] - Previous Version
+
+### Legacy
+- Original implementation based on rajini++ with lowercase keywords
+- rply-based parser
+- Python 3.8-3.10 support only
+
+---
+
+[1.0.0]: https://github.com/Tharun007-TK/Tharunpp/releases/tag/v1.0.0
+[0.3.1]: https://github.com/Tharun007-TK/Tharunpp/releases/tag/v0.3.1
+
+
 <!--next-version-placeholder-->
 
 ## v0.3.1 (2022-05-21)

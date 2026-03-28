@@ -1,0 +1,162 @@
+// Tharun++ Grammar using Lark
+
+start : program
+
+program : PGM_START statement* PGM_END
+
+?statement : var_declare SEMICOLON
+           | print_stmt SEMICOLON
+           | debug_stmt SEMICOLON
+           | warn_stmt SEMICOLON
+           | assign_stmt SEMICOLON
+           | if_stmt
+           | while_stmt
+           | for_stmt
+           | func_def
+           | return_stmt SEMICOLON
+           | func_call_stmt SEMICOLON
+           | try_stmt
+           | throw_stmt SEMICOLON
+           | assert_stmt SEMICOLON
+           | pass_stmt SEMICOLON
+           | import_stmt SEMICOLON
+           | list_declare SEMICOLON
+           | list_append SEMICOLON
+           | list_get SEMICOLON
+
+var_declare : VAR_DECL NAME ASSIGN expr
+assign_stmt : NAME ASSIGN expr
+print_stmt : PRINT expr ("," expr)*
+debug_stmt : DEBUG expr ("," expr)*
+warn_stmt : WARN expr ("," expr)*
+
+if_stmt : IF_COND expr COLON statement* (ELSE_IF expr COLON statement*)* (ELSE_COND COLON statement*)? BLOCK_END
+
+while_stmt : WHILE expr COLON statement* BLOCK_END
+
+for_stmt : FOR_START NAME FOR_RANGE_START expr FOR_RANGE_END expr COLON statement* BLOCK_END
+
+func_def : FUNC_DECLARE NAME (LPAREN param_list? RPAREN)? COLON statement* FUNC_END
+param_list : NAME ("," NAME)*
+
+return_stmt : RETURN expr
+
+func_call_stmt : func_call
+func_call : FUNC_CALL NAME LPAREN arg_list? RPAREN
+arg_list : expr ("," expr)*
+
+try_stmt : TRY COLON statement* CATCH NAME COLON statement* BLOCK_END
+
+throw_stmt : THROW expr
+
+assert_stmt : ASSERT expr ("," expr)?
+
+pass_stmt : PASS
+
+import_stmt : IMPORT STRING
+
+list_declare : VAR_DECL NAME ASSIGN LIST_NEW LBRACKET arg_list? RBRACKET
+list_append : LIST_ADD NAME expr
+list_get : VAR_DECL NAME ASSIGN LIST_GET NAME LBRACKET expr RBRACKET
+
+?expr : or_expr
+
+?or_expr : and_expr (OR and_expr)*
+?and_expr : not_expr (AND not_expr)*
+?not_expr : NOT not_expr | comp_expr
+
+?comp_expr : arith_expr (COMP_OP arith_expr)*
+
+?arith_expr : term ((PLUS | MINUS) term)*
+?term : factor ((STAR | SLASH | MOD) factor)*
+?factor : PLUS factor | MINUS factor | atom
+
+?atom : NUMBER
+      | STRING
+      | BOOL_TRUE
+      | BOOL_FALSE
+      | NULL_VAL
+      | NAME
+      | func_call
+      | list_len_expr
+      | LPAREN expr RPAREN
+
+list_len_expr : LIST_LEN NAME
+
+// Terminals - Program Structure
+PGM_START      : "VANAKKAM DA MAPLA"
+PGM_END        : "NANDRI VANNAKAM"
+
+// Terminals - Variables and Keywords (ALL UPPERCASE)
+VAR_DECL       : "VAA"
+PRINT          : "SOLLU"
+DEBUG          : "KALAAI"
+WARN           : "IRUNGH BHAII"
+BOOL_TRUE      : "SARI"
+BOOL_FALSE     : "THAPPU"
+NULL_VAL       : "ONNUMEY ILLA"
+AND            : "MATUM"
+OR             : "ILLA"
+NOT            : "VENDAM"
+RETURN         : "INDHAA LEY PATHUKO"
+LAMBDA         : "VINVELI NAYAGAN"
+TRY            : "PAAKALAM"
+THROW          : "AIYAYO"
+ASSERT         : "NIL GAVANI SEL"
+PASS           : "THALA_OK"
+IMPORT         : "MASS"
+
+// Terminals - Functions and Control Flow (Already uppercase)
+FUNC_DECLARE   : "ENDRA SHANMUGHAM"
+FUNC_CALL      : "VAA MA MINNAL"
+FUNC_END       : "VELI JOWW"
+IF_COND        : "ADHAVUDHU"
+ELSE_IF        : "ILLA ADHAVUDHU"
+ELSE_COND      : "ILLAATI"
+WHILE          : "TICKTOCK TICKTOCK"
+FOR_START      : "FIRST_LA"
+FOR_RANGE_START: "IRUNDHU"
+FOR_RANGE_END  : "VARAI"
+BREAK          : "EZHUNDHIRI"
+CONTINUE       : "ADUTHADUTHU"
+BLOCK_END      : "DA"
+CATCH          : "PUDRA IVANA"
+CLASS_DEF      : "SOLLA PUDADHU"
+
+// Terminals - List operations
+LIST_NEW       : "PATTI POTTU"
+LIST_ADD       : "ULLAYE POD"
+LIST_GET       : "EDUTHU KO"
+LIST_LEN       : "YEVLO IRUKU"
+
+// Operators
+COMP_OP        : "==" | "!=" | "<" | ">" | "<=" | ">="
+PLUS           : "+"
+MINUS          : "-"
+STAR           : "*"
+SLASH          : "/"
+MOD            : "%"
+ASSIGN         : "="
+
+// Delimiters
+LPAREN         : "("
+RPAREN         : ")"
+LBRACKET       : "["
+RBRACKET       : "]"
+COLON          : ":"
+SEMICOLON      : ";"
+COMMA          : ","
+
+// Identifiers and Literals - NAME only matches lowercase with underscores
+NAME           : /[a-z_][a-z0-9_]*/
+NUMBER         : /\d+(\.\d+)?/
+STRING         : /"[^"]*"/ | /'[^']*'/
+
+// Comments
+COMMENT        : "COMMENT PANDRAN" /[^\n]*/ NEWLINE
+NEWLINE        : /\r?\n/
+
+%import common.WS
+%ignore WS
+%ignore COMMENT
+%ignore NEWLINE

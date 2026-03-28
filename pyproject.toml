@@ -1,26 +1,28 @@
 [tool.poetry]
-name = "rajinipp"
-version = "0.3.1"
-description = "Rajini++ (rajiniPP) is a programming language based on the iconic dialogues by Rajinikanth."
-authors = ["Aadhithya Sankar <a.sankar@tum.de>"]
+name = "Tharunpp"
+version = "1.0.0"
+description = "Tharun++(Tharunpp) is a programming language based on the famous comedy dialogues of Tamil cinema industry."
+authors = ["Tharun Kumar <tharunkumarvmt@gmail.com>"]
 license = "MIT License"
 readme = "README.md"
 
-homepage = "https://github.com/aadhithya/rajiniPP"
-repository = "https://github.com/aadhithya/rajiniPP"
-documentation = "https://github.com/aadhithya/rajiniPP/wiki"
+homepage = "https://github.com/Tharun007-TK/Tharunpp/tree/main"
+repository = "https://github.com/Tharun007-TK/Tharunpp/tree/main/Tharunpp"
+documentation = "https://github.com/Tharun007-TK/Tharunpp#readme"
 
-keywords = ["esolang", "interpreter", "rply", "rajinipp", "superstar"]
+keywords = ["esolang", "interpreter", "lark", "Tharunpp", "thala"]
 
 classifiers = [
     "Topic :: Software Development :: Interpreters",
-    "Topic :: Software Development :: Libraries :: Python Modules"
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13"
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.11"
-rply = "^0.7.8"
-munch = "^2.5.0"
+python = ">=3.8"
+lark = "^1.1.9"
 loguru = "^0.6.0"
 typer = "^0.4.1"
 
@@ -31,18 +33,19 @@ commitizen = "^2.24.0"
 pre-commit = "^2.19.0"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
+flake8 = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-rajinipp = "rajinipp.__main__:app"
+tharunpp = "Tharunpp.cli.main:app"
 
 [tool.semantic_release]
 version_variable = [
     "pyproject.toml:version",
-    "rajinipp/__init__.py:__version__"
+    "Tharunpp/__init__.py:__version__"
 ]
 branch = "master"
 upload_to_pypi = true

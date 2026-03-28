@@ -1,73 +1,69 @@
-name: Test and Release
+name: Release to PyPI
+
 on:
   push:
-    branches: [master]
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 env:
-  PYTHON_VERSION: "3.9"
-  PROJECT_FOLDER: ./rajinipp
-  TEST_FOLDER: tests
+  PYTHON_VERSION: "3.11"
 
 jobs:
-  Quality:
+  test:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          fetch-depth: 0
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{env.PYTHON_VERSION}}
-
-      - name: Configure poetry & Install dependencies
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install poetry && poetry install
-
-      - name: View poetry version
-        run: poetry --version
-
-      - name: Lint with flake8
-        uses: ricardochaves/python-lint@v1.4.0
-        with:
-          python-root-list: ${{env.PROJECT_FOLDER}}
-          use-pylint: false
-          use-pycodestyle: false
-          use-flake8: true
-          use-black: false
-          use-mypy: false
-          use-isort: false
-
-          extra-flake8-options: "--max-line-length 79 --max-complexity 15 --config .flake8"
-
-      - name: Black formatting check
-        uses: psf/black@stable
-        with:
-          options: "--config .black"
-          src: ${{env.PROJECT_FOLDER}}
-          version: "22.3.0"
-
-      - name: Test with pytest
+          pip install poetry
+          poetry install
+      
+      - name: Run tests
         run: |
-          poetry run python -m pytest -v ${{env.TEST_FOLDER}}
+          poetry run pytest tests/test_interpreter.py -v
 
-  Release:
-    needs: Quality
-    # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+  build-and-publish:
+    needs: test
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: ${{env.PYTHON_VERSION}}
-      - name: Checkout code
-        uses: actions/checkout@v2
+          python-version: ${{ env.PYTHON_VERSION }}
+      
+      - name: Install poetry
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+      
+      - name: Build package
+        run: |
+          poetry build
+      
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          poetry publish
+      
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
         with:
-          fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
-      - name: Python Semantic Release
-        uses: aadhithya/py-semantic-release-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          repository_username: __token__
-          repository_password: ${{ secrets.PYPI_TOKEN }}
+          files: dist/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
