@@ -1,0 +1,138 @@
+# Package Cleanup - Remove Old Dead Code
+
+## Changes Being Made
+
+### 1. Files to be Deleted
+
+**Old rply-based code (no longer used):**
+- ✅ Tharunpp/lexer.py - Old rply lexer
+- ✅ Tharunpp/runner.py - Old execution runner
+- ✅ Tharunpp/utils.py - Old utilities
+- ✅ Tharunpp/exceptions.py - Old exceptions (replaced by core/interpreter.py)
+- ✅ Tharunpp/token.yml - Old token definitions
+- ✅ Tharunpp/__rajiniworld__.py - Old rajini++ reference
+- ✅ Tharunpp/ast/ - Entire AST folder (old implementation)
+- ✅ Tharunpp/parser/ - Entire parser folder (old rply-based)
+
+### 2. Files Being Updated
+
+**Tharunpp/__main__.py:**
+- ❌ Old: Imported `rpp` module (doesn't exist anymore)
+- ✅ New: Imports `Tharunpp.cli.main:app` (the correct entry point)
+
+**pyproject.toml:**
+- ✅ Package name: `Tharunpp` → `tharunpp` (lowercase, PyPI standard)
+- ✅ Typer version: `^0.4.1` → `^0.9.0` (latest stable)
+- ✅ Added classifiers:
+  - `Programming Language :: Python :: 3.8`
+  - `Programming Language :: Python :: 3.9`
+  - `Programming Language :: Python :: 3.10`
+
+### 3. What Remains (Clean Package)
+
+After cleanup, the package will only contain:
+
+```
+Tharunpp/
+├── __init__.py          # Package initialization (imports core, cli)
+├── __main__.py          # Entry point (imports cli.main:app)
+├── cli/
+│   ├── __init__.py
+│   └── main.py          # Typer CLI application
+└── core/
+    ├── __init__.py
+    ├── interpreter.py   # Lark-based interpreter
+    └── tharunpp.lark    # Grammar definition
+```
+
+## How to Execute
+
+### Option 1: Automated (RECOMMENDED)
+
+```bash
+cleanup_package.bat
+```
+
+This will:
+1. Delete all old files
+2. Clean dist/ folder
+3. Rebuild package with poetry
+4. Show tarball contents
+5. Stage all changes
+
+Then commit:
+```bash
+git commit -m "chore: remove old rply code, clean package for PyPI"
+git push origin main
+```
+
+### Option 2: Manual
+
+```bash
+# Delete old files
+del Tharunpp\lexer.py Tharunpp\runner.py Tharunpp\utils.py
+del Tharunpp\exceptions.py Tharunpp\token.yml Tharunpp\__rajiniworld__.py
+rd /S /Q Tharunpp\ast Tharunpp\parser
+
+# Rebuild
+rd /S /Q dist
+poetry build
+
+# Verify
+tar -tzf dist\tharunpp-1.0.0.tar.gz
+
+# Commit
+git add -A
+git commit -m "chore: remove old rply code, clean package for PyPI"
+git push origin main
+```
+
+## Verification
+
+After running the cleanup, the tarball should ONLY contain:
+
+```
+tharunpp-1.0.0/
+├── PKG-INFO
+├── pyproject.toml
+├── README.md
+├── LICENSE
+└── tharunpp/
+    ├── __init__.py
+    ├── __main__.py
+    ├── cli/
+    │   ├── __init__.py
+    │   └── main.py
+    └── core/
+        ├── __init__.py
+        ├── interpreter.py
+        └── tharunpp.lark
+```
+
+No old files like lexer.py, runner.py, ast/, parser/, etc. should be present.
+
+## Why This Matters
+
+**Before Cleanup:**
+❌ Package size bloated with unused code
+❌ Users install dead code they don't need
+❌ Confusing to have two different implementations
+❌ Security risk (old, unmaintained code)
+❌ Maintenance burden
+
+**After Cleanup:**
+✅ Smaller package size
+✅ Only modern Lark-based implementation
+✅ Clear, single source of truth
+✅ Easier to maintain
+✅ Professional PyPI package
+
+## Impact
+
+This will be published as tharunpp v1.0.0 on PyPI with only the clean, modern implementation.
+
+Old users upgrading from 0.3.1 will get a completely different (better) implementation, but since it's a major version bump (0.x → 1.0), breaking changes are expected.
+
+---
+
+Run `cleanup_package.bat` now to clean up the package! 🧹
