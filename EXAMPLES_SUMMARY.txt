@@ -1,0 +1,161 @@
+# Tharun++ Example Programs - Summary
+
+## 5 New Example Files Created
+
+All examples follow the exact Tharun++ grammar specification with UPPERCASE keywords.
+
+### ✅ examples/hello.tpp
+**Purpose:** Simple Hello World program  
+**Features:**
+- Declares a name variable using `VAA name SOLLUNGA "Tharun"`
+- Prints greeting messages with string concatenation
+- Uses `FIRST_LA` for loop to print numbers 1 to 5
+- Demonstrates basic program structure
+
+**Key Concepts:**
+- Variable declaration with `VAA ... SOLLUNGA`
+- String concatenation with `+`
+- For loops with `FIRST_LA i IRUNDHU start VARAI end`
+- Print statements with `SOLLU`
+
+---
+
+### ✅ examples/calculator.tpp  
+**Purpose:** Arithmetic operations and conditional logic  
+**Features:**
+- Declares two numbers (20 and 5)
+- Performs all 5 arithmetic operations: `+`, `-`, `*`, `/`, `%`
+- Prints each result with descriptive labels
+- Uses if/else if/else to check if number is positive, negative, or zero
+
+**Key Concepts:**
+- All arithmetic operators
+- `ADHAVUDHU` (if), `ILLA ADHAVUDHU` (else if), `ILLAATI` (else)
+- Block termination with `DA`
+- Comparison operators (`>`, `<`, `==`)
+
+---
+
+### ✅ examples/functions.tpp
+**Purpose:** Function definitions and calls  
+**Features:**
+- `add(a, b)` - Returns sum of two numbers
+- `is_even(n)` - Returns `SARI` or `THAPPU` based on modulus check
+- `factorial(n)` - Uses `TICKTOCK TICKTOCK` while loop to compute factorial
+- Calls all functions and prints results
+
+**Key Concepts:**
+- Function definition with `ENDRA SHANMUGHAM name(params):`
+- Function end with `VELI JOWW`
+- Function call with `VAA MA MINNAL name(args)`
+- Return values with `INDHAA LEY PATHUKO`
+- While loops with `TICKTOCK TICKTOCK condition:`
+- Boolean values `SARI` and `THAPPU`
+
+---
+
+### ✅ examples/lists.tpp
+**Purpose:** List/array operations  
+**Features:**
+- Creates list with `PATTI POTTU [10, 20, 30, 40, 50]`
+- Appends elements with `ULLAYE POD numbers 60`
+- Gets list length with `YEVLO IRUKU numbers`
+- Retrieves elements with `EDUTHU KO numbers [index]`
+- Uses for loop to iterate through all elements
+
+**Key Concepts:**
+- List creation: `VAA list SOLLUNGA PATTI POTTU [items]`
+- List append: `ULLAYE POD list value`
+- List length: `YEVLO IRUKU list`
+- List access: `EDUTHU KO list [index]`
+- Empty list creation: `PATTI POTTU []`
+
+---
+
+### ✅ examples/error_handling.tpp
+**Purpose:** Error handling, assertions, debugging  
+**Features:**
+- Try/catch with `PAAKALAM:` and `PUDRA IVANA err:`
+- Throws errors with `AIYAYO "message"`
+- Validates conditions with `NIL GAVANI SEL condition`
+- Debug output with `KALAAI variable`
+- Warning messages with `IRUNGH BHAII "warning"`
+- Demonstrates nested try/catch blocks
+
+**Key Concepts:**
+- Try block: `PAAKALAM:`
+- Catch block: `PUDRA IVANA err:`
+- Throw exception: `AIYAYO "error message"`
+- Assert: `NIL GAVANI SEL condition`
+- Debug print: `KALAAI value`
+- Warning print: `IRUNGH BHAII "message"`
+- Logical AND: `MATUM`
+- Block termination: `DA`
+
+---
+
+## Grammar Rules Followed
+
+✅ **Program Structure:**
+- Every program starts with `VANAKKAM DA MAPLA`
+- Every program ends with `NANDRI VANNAKAM`
+
+✅ **Statements:**
+- Every statement ends with `;`
+- Variable names are lowercase with underscores only
+
+✅ **Blocks:**
+- All blocks (if, while, for, try) end with `DA`
+- Exception: Function definitions end with `VELI JOWW`
+
+✅ **Keywords:**
+- All keywords are UPPERCASE
+- No keywords were invented - only specified keywords used
+
+✅ **Comments:**
+- Comments use `COMMENT PANDRAN message`
+- Used throughout to explain code sections
+
+✅ **Operators:**
+- Arithmetic: `+`, `-`, `*`, `/`, `%`
+- Comparison: `==`, `!=`, `>`, `<`, `>=`, `<=`
+- Logical: `MATUM` (AND), `ILLA` (OR), `VENDAM` (NOT)
+
+✅ **Strings:**
+- All strings use double quotes only
+- String concatenation with `+`
+
+---
+
+## Old .rpp Files
+
+The examples directory also contains old `.rpp` files from the rajini++ version:
+- fizzbuzz.rpp
+- for_loop.rpp
+- functions_no_args.rpp
+- function_return.rpp
+- hello_world.rpp
+- if_conditional.rpp
+- if_else_conditional.rpp
+- logical_ops.rpp
+- math_ops.rpp
+- multi_print.rpp
+- while_loop.rpp
+
+These should be removed or updated to .tpp format.
+
+---
+
+## Testing the Examples
+
+Run each example with:
+
+```bash
+tharunpp run-file examples/hello.tpp
+tharunpp run-file examples/calculator.tpp
+tharunpp run-file examples/functions.tpp
+tharunpp run-file examples/lists.tpp
+tharunpp run-file examples/error_handling.tpp
+```
+
+All examples are production-ready and follow the exact grammar specification! 🎯
