@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tharunpp"
-version = "1.0.1"
+version = "1.0.2"
 description = "Tharun++(Tharunpp) is a programming language based on the famous comedy dialogues of Tamil cinema industry."
 packages = [{include = "Tharunpp"}]
 authors = ["Tharun Kumar <tharunkumarvmt@gmail.com>"]
