@@ -83,7 +83,7 @@ echo Next steps:
 echo ========================================
 echo.
 echo To push to GitHub, run:
-echo     git push -u origin master
+echo     git push -u origin main
 echo.
 echo To create a release tag:
 echo     git tag v1.0.0

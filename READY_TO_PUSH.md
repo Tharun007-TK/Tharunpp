@@ -77,7 +77,7 @@ git remote add origin https://github.com/Tharun007-TK/Tharunpp.git
 git commit -m "Release Tharun++ v1.0.0 - Complete rewrite with Lark parser"
 
 # 5. Push to GitHub
-git push -u origin master
+git push -u origin main
 
 # 6. Create version tag
 git tag v1.0.0

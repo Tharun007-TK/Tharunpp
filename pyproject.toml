@@ -34,6 +34,7 @@ pre-commit = "^2.19.0"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
 flake8 = "^6.0.0"
+ruff = "^0.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -47,7 +48,7 @@ version_variable = [
     "pyproject.toml:version",
     "Tharunpp/__init__.py:__version__"
 ]
-branch = "master"
+branch = "main"
 upload_to_pypi = true
 upload_to_release = true
 build_command = "pip install poetry && poetry build"

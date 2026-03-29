@@ -1,6 +1,10 @@
 name: Test and Quality Checks
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 env:
   PYTHON_VERSION: "3.11"
@@ -11,22 +15,22 @@ jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install poetry
-          poetry install
+          poetry install --no-interaction
       
       - name: Run tests with pytest
         run: |
@@ -43,22 +47,22 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install poetry
-          poetry install
+          poetry install --no-interaction
       
-      - name: Lint with flake8
+      - name: Lint
         run: |
-          poetry run flake8 ${{ env.PROJECT_FOLDER }} --max-line-length=120 --exclude=__pycache__,venv --extend-ignore=E203,W503
+          pip install ruff
+          ruff check Tharunpp/
         continue-on-error: true
   
   build:
@@ -66,16 +70,15 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       
       - name: Install poetry
         run: |
-          python -m pip install --upgrade pip
           pip install poetry
       
       - name: Build package

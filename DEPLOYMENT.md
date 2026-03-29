@@ -88,7 +88,7 @@ poetry publish
    ```bash
    git add .
    git commit -m "Release v1.0.0"
-   git push origin master
+   git push origin main
    ```
 
 3. **Create and push a version tag**
@@ -108,7 +108,7 @@ poetry publish
 1. Go to repository → Actions
 2. Select "Release to PyPI" workflow
 3. Click "Run workflow"
-4. Select branch (usually `master`)
+4. Select branch (usually `main`)
 5. Click "Run workflow" button
 
 ## Post-Deployment Verification

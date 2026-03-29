@@ -1,24 +1,57 @@
-# Editors
+# ============================================================================
+# Tharun++ .gitignore
+# ============================================================================
+
+# ============================================================================
+# IDEs and Editors
+# ============================================================================
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
+.vscode-test/
+*.sublime-project
+*.sublime-workspace
 
-# Vagrant
-.vagrant/
-
+# ============================================================================
+# Operating Systems
+# ============================================================================
 # Mac/OSX
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
 
 # Windows
 Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
 
-# Source for the following rules: https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================================================
+# Python
+# ============================================================================
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
+*.pyo
+*.pyd
 
 # C extensions
 *.so
+*.dll
+*.dylib
 
 # Distribution / packaging
 .Python
@@ -34,14 +67,14 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
 
 # PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
 
@@ -56,36 +89,43 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.pytest_cache/
 nosetests.xml
 coverage.xml
 *.cover
+*.py,cover
 .hypothesis/
-.pytest_cache/
+.benchmarks
 
 # Translations
 *.mo
 *.pot
 
-# Django stuff:
+# Django
 *.log
 local_settings.py
 db.sqlite3
+db.sqlite3-journal
 
-# Flask stuff:
+# Flask
 instance/
 .webassets-cache
 
-# Scrapy stuff:
+# Scrapy
 .scrapy
 
 # Sphinx documentation
 docs/_build/
+docs/_static/
+docs/_templates/
 
 # PyBuilder
+.pybuilder/
 target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.ipynb_checkpoints
 
 # IPython
 profile_default/
@@ -94,29 +134,39 @@ ipython_config.py
 # pyenv
 .python-version
 
-# celery beat schedule file
-celerybeat-schedule
+# pipenv
+Pipfile.lock
 
-# SageMath parsed files
+# PEP 582
+__pypackages__/
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath
 *.sage.py
 
 # Environments
 .env
+.env.local
+.env.*.local
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+pythonenv*/
 
-# Spyder project settings
+# Spyder
 .spyderproject
 .spyproject
 
-# Rope project settings
+# Rope
 .ropeproject
 
-# mkdocs documentation
+# mkdocs
 /site
 
 # mypy
@@ -124,25 +174,67 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
-# Temporary debug files
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# ============================================================================
+# Poetry
+# ============================================================================
+poetry.lock
+
+# ============================================================================
+# Ruff
+# ============================================================================
+.ruff_cache/
+
+# ============================================================================
+# Project-specific
+# ============================================================================
+# Temporary debug and test files
 debug_*.py
 check_*.py
-test_grammar.py
-test_e2e.py
+test_*.py
+!tests/test_*.py
 do_extract.py
 extract_source.py
 setup_dirs.py
 run_extract.bat
 cleanup.py
 
-# Extracted archives
+# Extracted archives and old versions
 tharunpp-0.3.1/
 rajinipp-*/
 *.tar.gz.extracted/
+*.zip.extracted/
 
-# Old files
+# Old and deprecated files
 hello.rpp
-test-programs
-.kanbn
-docs
+test-programs/
+.kanbn/
+docs/
+
+# Build artifacts
+*.tar.gz
+*.whl
+!dist/*.tar.gz
+!dist/*.whl
+
+# Session and temporary files
+.copilot/
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# ============================================================================
+# Development tools
+# ============================================================================
+.vagrant/
+*.code-workspace
 
