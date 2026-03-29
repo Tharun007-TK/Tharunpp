@@ -1,13 +1,13 @@
-# Tharunpp
+# Tharunpp 🎬
 
-A programming language powered by Tamil cinema comedy dialogues.
-
-## Badges
+**A programming language powered by Tamil cinema comedy dialogues.**
 
 [![PyPI version](https://img.shields.io/pypi/v/tharunpp?style=flat-square)](https://pypi.org/project/tharunpp/)
 [![Python versions](https://img.shields.io/pypi/pyversions/tharunpp?style=flat-square)](https://pypi.org/project/tharunpp/)
 [![MIT License](https://img.shields.io/pypi/l/tharunpp?style=flat-square)](LICENSE)
 [![CI Status](https://img.shields.io/github/actions/workflow/status/Tharun007-TK/Tharunpp/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/Tharun007-TK/Tharunpp/actions/workflows/test.yml)
+
+---
 
 ## Installation
 
@@ -15,210 +15,253 @@ A programming language powered by Tamil cinema comedy dialogues.
 pip install tharunpp
 ```
 
+Requires Python >= 3.8.1
+
+---
+
 ## Usage
 
 ```bash
-# Run a Tharun++ program
-tharunpp run-file program.tpp
-
-# Start interactive shell
-tharunpp shell
-
-# Tokenize and show parse tree
-tharunpp tokenize program.tpp
-
-# Show version
-tharunpp version
+tharunpp run-file program.tpp    # run a program
+tharunpp shell                   # interactive REPL
+tharunpp tokenize program.tpp    # show tokens
+tharunpp version                 # show version
 ```
+
+---
 
 ## Program Structure
 
-Every Tharun++ program must begin with `VANAKKAM DA MAPLA` and end with `NANDRI VANNAKAM`.
-
-**Hello World Example:**
+Every program must start with `VANAKKAM DA MAPLA` and end with `NANDRI VANNAKAM`.
 
 ```
 VANAKKAM DA MAPLA
 
-SOLLU "Hello, World!" ;
+    SOLLU "Vanakkam da mapla!" ;
 
 NANDRI VANNAKAM
 ```
 
-## Full Keyword Reference
+---
 
-| Purpose | Keyword | Example |
-|---------|---------|---------|
-| **Program Structure** |
-| Program start | `VANAKKAM DA MAPLA` | `VANAKKAM DA MAPLA` |
-| Program end | `NANDRI VANNAKAM` | `NANDRI VANNAKAM` |
-| **Variables** |
-| Declare variable | `VAA` | `VAA x = 10 ;` |
-| **Output** |
-| Print output | `SOLLU` | `SOLLU "Hello" ;` |
-| Debug output | `KALAAI` | `KALAAI x ;` |
-| Warning output | `IRUNGH BHAII` | `IRUNGH BHAII "Warning" ;` |
-| **Boolean Values** |
-| True | `SARI` | `VAA flag = SARI ;` |
-| False | `THAPPU` | `VAA flag = THAPPU ;` |
-| Null | `ONNUMEY ILLA` | `VAA x = ONNUMEY ILLA ;` |
-| **Logical Operators** |
-| AND | `MATUM` | `ADHAVUDHU x > 5 MATUM y < 10:` |
-| OR | `ILLA` | `ADHAVUDHU x == 0 ILLA y == 0:` |
-| NOT | `VENDAM` | `ADHAVUDHU VENDAM flag:` |
-| **Control Flow** |
-| If condition | `ADHAVUDHU` | `ADHAVUDHU x > 5:` |
-| Else if | `ILLA ADHAVUDHU` | `ILLA ADHAVUDHU x > 0:` |
-| Else | `ILLAATI` | `ILLAATI:` |
-| Block end | `DA` | `DA` |
-| While loop | `TICKTOCK TICKTOCK` | `TICKTOCK TICKTOCK x < 10:` |
-| For loop start | `FIRST_LA` | `FIRST_LA i IRUNDHU 1 VARAI 5:` |
-| For range start | `IRUNDHU` | (see above) |
-| For range end | `VARAI` | (see above) |
-| Break | `EZHUNDHIRI` | `EZHUNDHIRI ;` |
-| Continue | `ADUTHADUTHU` | `ADUTHADUTHU ;` |
-| **Functions** |
-| Declare function | `ENDRA SHANMUGHAM` | `ENDRA SHANMUGHAM greet:` |
-| Call function | `VAA MA MINNAL` | `VAA MA MINNAL greet() ;` |
-| Function end | `VELI JOWW` | `VELI JOWW` |
-| Return | `INDHAA LEY PATHUKO` | `INDHAA LEY PATHUKO 42 ;` |
-| Lambda | `VINVELI NAYAGAN` | (future feature) |
-| **Error Handling** |
-| Try block | `PAAKALAM` | `PAAKALAM:` |
-| Catch block | `PUDRA IVANA` | `PUDRA IVANA err:` |
-| Throw error | `AIYAYO` | `AIYAYO "Error!" ;` |
-| Assert | `NIL GAVANI SEL` | `NIL GAVANI SEL x > 0 ;` |
-| **Lists** |
-| Create list | `PATTI POTTU` | `VAA nums = PATTI POTTU [1, 2, 3] ;` |
-| Append to list | `ULLAYE POD` | `ULLAYE POD nums 4 ;` |
-| Get from list | `EDUTHU KO` | `VAA x = EDUTHU KO nums [0] ;` |
-| List length | `YEVLO IRUKU` | `SOLLU YEVLO IRUKU nums ;` |
-| **Other** |
-| Pass/No-op | `THALA_OK` | `THALA_OK ;` |
-| Import | `MASS` | `MASS "module" ;` |
-| Comment | `COMMENT PANDRAN` | `COMMENT PANDRAN This is a comment` |
+## Keyword Reference
 
-## Code Examples
+### Program
 
-### 1. Hello World
+| Purpose       | Keyword             |
+| ------------- | ------------------- |
+| Program start | `VANAKKAM DA MAPLA` |
+| Program end   | `NANDRI VANNAKAM`   |
+| Comment       | `COMMENT PANDRAN`   |
+
+### Variables & Values
+
+| Purpose          | Keyword        | Example                  |
+| ---------------- | -------------- | ------------------------ |
+| Declare variable | `VAA`          | `VAA x = 10 ;`           |
+| True             | `SARI`         | `VAA flag = SARI ;`      |
+| False            | `THAPPU`       | `VAA flag = THAPPU ;`    |
+| Null             | `ONNUMEY ILLA` | `VAA x = ONNUMEY ILLA ;` |
+
+### Output & Input
+
+| Purpose       | Keyword        | Example                        |
+| ------------- | -------------- | ------------------------------ |
+| Print         | `SOLLU`        | `SOLLU "dei!" ;`               |
+| Debug print   | `KALAAI`       | `KALAAI x ;`                   |
+| Warning print | `IRUNGH BHAII` | `IRUNGH BHAII "careful da!" ;` |
+
+### Operators
+
+| Purpose    | Symbol                      |
+| ---------- | --------------------------- |
+| Arithmetic | `+` `-` `*` `/` `%`         |
+| Comparison | `==` `!=` `>` `<` `>=` `<=` |
+| AND        | `MATUM`                     |
+| OR         | `ILLA`                      |
+| NOT        | `VENDAM`                    |
+
+### Control Flow
+
+| Purpose    | Keyword             | Example                          |
+| ---------- | ------------------- | -------------------------------- |
+| If         | `ADHAVUDHU`         | `ADHAVUDHU x > 5 :`              |
+| Else if    | `ILLA ADHAVUDHU`    | `ILLA ADHAVUDHU x == 5 :`        |
+| Else       | `ILLAATI`           | `ILLAATI :`                      |
+| End block  | `DA`                | `DA`                             |
+| While loop | `TICKTOCK TICKTOCK` | `TICKTOCK TICKTOCK x < 10 :`     |
+| For loop   | `FIRST_LA`          | `FIRST_LA i IRUNDHU 0 VARAI 5 :` |
+| Break      | `EZHUNDHIRI`        | `EZHUNDHIRI ;`                   |
+| Continue   | `ADUTHADUTHU`       | `ADUTHADUTHU ;`                  |
+
+### Functions
+
+| Purpose         | Keyword              | Example                        |
+| --------------- | -------------------- | ------------------------------ |
+| Define function | `ENDRA SHANMUGHAM`   | `ENDRA SHANMUGHAM add(a, b) :` |
+| End function    | `VELI JOWW`          | `VELI JOWW`                    |
+| Call function   | `VAA MA MINNAL`      | `VAA MA MINNAL add(1, 2) ;`    |
+| Return          | `INDHAA LEY PATHUKO` | `INDHAA LEY PATHUKO x + y ;`   |
+
+### Error Handling
+
+| Purpose | Keyword          | Example                       |
+| ------- | ---------------- | ----------------------------- |
+| Try     | `PAAKALAM`       | `PAAKALAM :`                  |
+| Catch   | `PUDRA IVANA`    | `PUDRA IVANA err :`           |
+| Throw   | `AIYAYO`         | `AIYAYO "something broke!" ;` |
+| Assert  | `NIL GAVANI SEL` | `NIL GAVANI SEL x > 0 ;`      |
+
+### Lists
+
+| Purpose      | Keyword       | Example                              |
+| ------------ | ------------- | ------------------------------------ |
+| Create list  | `PATTI POTTU` | `VAA nums = PATTI POTTU [1, 2, 3] ;` |
+| Append       | `ULLAYE POD`  | `ULLAYE POD nums 4 ;`                |
+| Get by index | `EDUTHU KO`   | `VAA x = EDUTHU KO nums [0] ;`       |
+| Length       | `YEVLO IRUKU` | `SOLLU YEVLO IRUKU nums ;`           |
+
+### Other
+
+| Purpose       | Keyword    | Example         |
+| ------------- | ---------- | --------------- |
+| Import module | `MASS`     | `MASS "math" ;` |
+| Pass / no-op  | `THALA_OK` | `THALA_OK ;`    |
+
+---
+
+## Examples
+
+### Hello World
 
 ```
 VANAKKAM DA MAPLA
 
-SOLLU "Vanakkam da! Welcome to Tharun++" ;
+    SOLLU "Vanakkam da mapla!" ;
 
 NANDRI VANNAKAM
 ```
 
-### 2. Variables and Arithmetic
+### Variables and Arithmetic
 
 ```
 VANAKKAM DA MAPLA
 
-VAA x = 10 ;
-VAA y = 20 ;
-VAA sum = x + y ;
-VAA diff = y - x ;
-VAA product = x * y ;
-VAA quotient = y / x ;
-
-SOLLU "Sum:", sum ;
-SOLLU "Difference:", diff ;
-SOLLU "Product:", product ;
-SOLLU "Quotient:", quotient ;
-
-NANDRI VANNAKAM
-```
-
-### 3. If / Else If / Else
-
-```
-VANAKKAM DA MAPLA
-
-VAA score = 85 ;
-
-ADHAVUDHU score >= 90:
-    SOLLU "Grade: A" ;
-ILLA ADHAVUDHU score >= 80:
-    SOLLU "Grade: B" ;
-ILLA ADHAVUDHU score >= 70:
-    SOLLU "Grade: C" ;
-ILLAATI:
-    SOLLU "Grade: F" ;
-DA
-
-NANDRI VANNAKAM
-```
-
-### 4. Functions with Return
-
-```
-VANAKKAM DA MAPLA
-
-ENDRA SHANMUGHAM calculate_area:
-    VAA length = 10 ;
-    VAA width = 5 ;
-    VAA area = length * width ;
-    INDHAA LEY PATHUKO area ;
-VELI JOWW
-
-VAA result = VAA MA MINNAL calculate_area() ;
-SOLLU "Area is:", result ;
-
-NANDRI VANNAKAM
-```
-
-### 5. Error Handling with Try/Catch
-
-```
-VANAKKAM DA MAPLA
-
-PAAKALAM:
-    SOLLU "Attempting division..." ;
     VAA x = 10 ;
-    VAA y = 0 ;
-    ADHAVUDHU y == 0:
-        AIYAYO "Cannot divide by zero!" ;
-    DA
-    VAA result = x / y ;
-PUDRA IVANA err:
-    SOLLU "Caught error:", err ;
-DA
-
-SOLLU "Program continues..." ;
+    VAA y = 3 ;
+    SOLLU x + y ;
+    SOLLU x * y ;
+    SOLLU x - y ;
 
 NANDRI VANNAKAM
 ```
+
+### If / Else if / Else
+
+```
+VANAKKAM DA MAPLA
+
+    VAA score = 85 ;
+
+    ADHAVUDHU score >= 90 :
+        SOLLU "Grade A da!" ;
+    ILLA ADHAVUDHU score >= 80 :
+        SOLLU "Grade B da!" ;
+    ILLA ADHAVUDHU score >= 70 :
+        SOLLU "Grade C da!" ;
+    ILLAATI :
+        SOLLU "Fail aagitanga da..." ;
+    DA
+
+NANDRI VANNAKAM
+```
+
+### While Loop
+
+```
+VANAKKAM DA MAPLA
+
+    VAA i = 0 ;
+    TICKTOCK TICKTOCK i < 5 :
+        SOLLU i ;
+        VAA i = i + 1 ;
+    DA
+
+NANDRI VANNAKAM
+```
+
+### For Loop
+
+```
+VANAKKAM DA MAPLA
+
+    FIRST_LA i IRUNDHU 0 VARAI 5 :
+        SOLLU i ;
+    DA
+
+NANDRI VANNAKAM
+```
+
+### Functions
+
+```
+VANAKKAM DA MAPLA
+
+    ENDRA SHANMUGHAM add(a, b) :
+        INDHAA LEY PATHUKO a + b ;
+    VELI JOWW
+
+    VAA result = VAA MA MINNAL add(10, 20) ;
+    SOLLU result ;
+
+NANDRI VANNAKAM
+```
+
+### Error Handling
+
+```
+VANAKKAM DA MAPLA
+
+    PAAKALAM :
+        AIYAYO "something went wrong da!" ;
+    PUDRA IVANA err :
+        SOLLU err ;
+    DA
+
+NANDRI VANNAKAM
+```
+
+### Lists
+
+```
+VANAKKAM DA MAPLA
+
+    VAA nums = PATTI POTTU [1, 2, 3] ;
+    ULLAYE POD nums 4 ;
+    SOLLU YEVLO IRUKU nums ;
+    VAA first = EDUTHU KO nums [0] ;
+    SOLLU first ;
+
+NANDRI VANNAKAM
+```
+
+---
 
 ## Error Messages
 
-Tharun++ provides clear error messages for common issues:
+Tharunpp gives Tamil-flavoured error messages:
 
-### TharunppTypeError
-```
-Expected list, got int
-```
-Raised when a value of the wrong type is used (e.g., trying to append to a non-list).
+| Error              | Message                                          |
+| ------------------ | ------------------------------------------------ |
+| Type error         | `Aiyayo! list venum da, int koduthutta`          |
+| Undefined variable | `Dei! 'x' yaaruda avan? Declare pannada`         |
+| Division by zero   | `SUPERSTAR kooda zero-a divide panna maatan bro` |
+| Syntax error       | `BHAI enna da idhu? Syntax puriyalai`            |
 
-### TharunppNameError
-```
-Variable 'x' is not defined
-```
-Raised when accessing a variable that hasn't been declared.
-
-### TharunppZeroDivisionError
-```
-Cannot divide by zero
-```
-Raised when attempting division by zero.
-
-### TharunppSyntaxError
-```
-Unexpected token at line 5
-```
-Raised when the code has invalid syntax.
+---
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE) for details.
 
+Made with ❤️ in Tamil Nadu 🎬
