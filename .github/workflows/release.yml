@@ -30,33 +30,30 @@ jobs:
         run: |
           poetry run pytest tests/test_interpreter.py -v
 
-  build-and-publish:
-    needs: test
+  publish:
+    needs: [test]
     runs-on: ubuntu-latest
-    
+    environment: pypi
+    permissions:
+      id-token: write
+
     steps:
       - uses: actions/checkout@v5
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
-      
+          python-version: "3.11"
+
       - name: Install poetry
-        run: |
-          pip install poetry
-      
+        run: pip install "poetry>=1.5,<2.0"
+
       - name: Build package
-        run: |
-          poetry build
-      
+        run: poetry build
+
       - name: Publish to PyPI
-        if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          poetry publish
-      
+        uses: pypa/gh-action-pypi-publish@release/v1
+
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
