@@ -7,7 +7,7 @@ A programming language powered by Tamil cinema comedy dialogues.
 [![PyPI version](https://img.shields.io/pypi/v/tharunpp?style=flat-square)](https://pypi.org/project/tharunpp/)
 [![Python versions](https://img.shields.io/pypi/pyversions/tharunpp?style=flat-square)](https://pypi.org/project/tharunpp/)
 [![MIT License](https://img.shields.io/pypi/l/tharunpp?style=flat-square)](LICENSE)
-[![CI Status](https://img.shields.io/github/workflow/status/Tharun007-TK/Tharunpp/Test?style=flat-square)](https://github.com/Tharun007-TK/Tharunpp/actions)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/Tharun007-TK/Tharunpp/test.yml?branch=main&style=flat-square&label=tests)](https://github.com/Tharun007-TK/Tharunpp/actions/workflows/test.yml)
 
 ## Installation
 
