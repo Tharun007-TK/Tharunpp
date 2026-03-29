@@ -76,7 +76,7 @@ def tokenize(file_path: str):
 @app.command("version")
 def version():
     """Show Tharun++ version"""
-    typer.echo("Tharun++ version 1.0.0")
+    from Tharunpp import __version__; typer.echo(f"Tharun++ version {__version__}")
 
 
 if __name__ == "__main__":
