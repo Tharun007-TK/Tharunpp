@@ -18,75 +18,75 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-    
+
     steps:
       - uses: actions/checkout@v5
-      
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      
+
       - name: Install dependencies
         run: |
-          pip install poetry
+          pip install "poetry>=1.5,<2.0"
           poetry install --no-interaction
-      
+
       - name: Run tests with pytest
         run: |
-          poetry run pytest ${{ env.TEST_FOLDER }}/test_interpreter.py -v --cov=${{ env.PROJECT_FOLDER }} --cov-report=xml
-      
+          poetry run pytest ${{ env.TEST_FOLDER }}/test_interpreter.py -v \
+            --cov=${{ env.PROJECT_FOLDER }} \
+            --cov-report=xml
+
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.11'
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           file: ./coverage.xml
           fail_ci_if_error: false
 
   lint:
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v5
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      
+
       - name: Install dependencies
         run: |
-          pip install poetry
+          pip install "poetry>=1.5,<2.0"
           poetry install --no-interaction
-      
+
       - name: Lint
         run: |
           pip install ruff
           ruff check Tharunpp/
         continue-on-error: true
-  
+
   build:
     needs: [test, lint]
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v5
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-      
+
       - name: Install poetry
-        run: |
-          pip install poetry
-      
+        run: pip install "poetry>=1.5,<2.0"
+
       - name: Build package
-        run: |
-          poetry build
-      
+        run: poetry build
+
       - name: Store build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist/
